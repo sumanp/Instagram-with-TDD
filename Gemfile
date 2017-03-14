@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'simple_form'
 gem "paperclip", "~> 5.0.0"
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'devise'
 
 gem 'jquery-rails'
 gem 'turbolinks'
@@ -19,6 +19,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'launchy', '~> 2.4', '>= 2.4.3'
   gem 'byebug'
 end
 

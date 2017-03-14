@@ -1,8 +1,18 @@
 require 'rails_helper.rb'
 
 feature 'Creating posts' do
-  scenario 'can create a post' do
+  before do
+    user = create(:user)
     visit '/'
+    expect(page).to_not have_content('New Post')
+
+    click_link 'Login'
+    fill_in 'Email', with: 'fancyfrank@gmail.com'
+    fill_in 'Password', with: 'illbeback'
+    click_button 'Log in'
+  end
+  
+  scenario 'can create a post' do
     click_link 'New Post'
     attach_file('Image', "spec/files/images/profile.jpg")
     fill_in 'Caption', with: 'Why you suits?! #interviewtime'

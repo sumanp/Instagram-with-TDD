@@ -4,7 +4,14 @@ feature 'Editing posts' do
   background do
     post = create(:post)
 
+    user = create(:user)
     visit '/'
+    expect(page).to_not have_content('New Post')
+
+    click_link 'Login'
+    fill_in 'Email', with: 'fancyfrank@gmail.com'
+    fill_in 'Password', with: 'illbeback'
+    click_button 'Log in'
     click_link(href: post_path(post))
     click_link 'Edit Post'
   end
