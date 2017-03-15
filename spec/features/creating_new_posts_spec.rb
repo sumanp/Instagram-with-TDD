@@ -1,24 +1,19 @@
 require 'rails_helper.rb'
 
 feature 'Creating posts' do
-  before do
+  background do
     user = create(:user)
-    visit '/'
-    expect(page).to_not have_content('New Post')
+    sign_in_with user
+    post = create(:post, user_id: user.id, caption: "Why you suits?! #interviewtime")
 
-    click_link 'Login'
-    fill_in 'Email', with: 'fancyfrank@gmail.com'
-    fill_in 'Password', with: 'illbeback'
-    click_button 'Log in'
   end
-  
+
   scenario 'can create a post' do
-    click_link 'New Post'
-    attach_file('Image', "spec/files/images/profile.jpg")
-    fill_in 'Caption', with: 'Why you suits?! #interviewtime'
-    click_button 'Create Post'
+    visit '/'
     expect(page).to have_content('#interviewtime')
     expect(page).to have_css("img[src*='profile.jpg']")
+    expect(page).to have_content('Arnie')
+
   end
 
   it 'needs an image to create a post' do
