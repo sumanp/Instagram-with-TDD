@@ -9,6 +9,7 @@ gem 'simple_form'
 gem "paperclip", "~> 5.0.0"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'kaminari', '~> 0.16.3'
 
 gem 'jquery-rails'
 gem 'turbolinks'

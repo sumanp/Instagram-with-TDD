@@ -17,7 +17,94 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ html {
+   height: 100%;
+ }
 
+ .registration-bg {
+   padding-top: 4em;
+   height: 100%;
+   background: image-url('begin.jpg') no-repeat center center fixed;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+   background-size: cover;
+   background-color: #464646;
+ }
+
+ .log-in{
+   margin-left: auto;
+   margin-right: auto;
+   text-align:center;
+   border: none;
+   margin-bottom: 250px;
+ }
+
+ .login-bg {
+  padding-top: 4em;
+  height: 100%;
+  background-image: image-url('loginbg.jpg');
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+ .panel {
+   border-radius: 8px;
+ }
+
+ .panel-heading{
+   h1 {
+     text-align: center;
+   }
+ }
+
+ .navbar {
+  margin-bottom: 0px;
+}
+
+.alert {
+  margin-bottom: 0px;
+}
+
+#image-preview {
+  margin: 0px auto;
+  padding-top: 10px;
+}
+
+#post_image {
+  padding: 1em;
+  margin: 0px auto;
+}
+
+#paginator {
+  color: #4090DB;
+  height: 120px;
+  width: 120px;
+  margin: 60px auto 40px;
+  position: relative;
+  display: table;
+  border: 2px solid #4090DB;
+  border-radius: 50%;
+  :hover {
+    border: 1px solid #2D6DA8;
+    border-radius: 50%;
+  }
+}
+
+#load_more {
+  display: table-cell;
+  font-size: 12px;
+  padding: 0px 9px;
+  vertical-align: middle;
+  text-decoration: none;
+  a :hover {
+    color: #2D6DA8;
+  }
+}
+
+ //old
  body {
     background-color: #fafafa;
     font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
