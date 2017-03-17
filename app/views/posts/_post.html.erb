@@ -9,6 +9,7 @@
     <div class="image center-block">
       <%= link_to (image_tag post.image.url(:medium), class:'img-responsive'), post_path(post) %>
     </div>
+
     <div class="post-bottom">
       <div class="caption">
         <div class="user-name">
@@ -16,24 +17,19 @@
         </div>
         <%= post.caption %>
       </div>
-      <% if post.comments %>
-        <% post.comments.each do |comment| %>
-          <div class="comment">
-            <div class="user-name">
-              <%= comment.user.user_name %>
-            </div>
-            <div class="content<%= comment.id %>">
-              <%= comment.content %>
-            </div>
-            <% if comment.user == current_user %>
-              <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: "Are you sure?" } do %>
-                <span class="glyphicon glyphicon-remove delete-comment">delete-1</span>
+      
+      <div class="comments" id="comments_<%=post.id%>">
+        <% if post.comments.any? %>
+          <div class="paginator" id="comments-pagintor-<%=post.id %>">
+            <% unless post.comments.count <= 4 %>
+              <%= link_to "view all #{post.comments.count} comments", post_comments_path(post), remote: true, class: 'more-comments', data: {post_id: "#{post.id}", type: "html"} %>
               <% end %>
-            <% end %>
+            <%= render post.comments.last(4), post: post %>
           </div>
         <% end %>
-      <% end %>
+      </div>
     </div>
+
     <div class="comment-like-form row">
       <div class="like-button col-sm-1">
         <span class="glyphicon glyphicon-heart-empty"></span>
@@ -45,5 +41,6 @@
         <% end %>
       </div>
     </div>
+
   </div>
 </div>
