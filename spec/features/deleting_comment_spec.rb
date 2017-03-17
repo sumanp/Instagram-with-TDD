@@ -5,7 +5,7 @@ feature 'Deleting comments' do
     user = create :user
     user_two = create(:user, id: 2, email: 'hi@hi.com', user_name: 'bigrigoz')
     post = create(:post, user_id: user.id, id: 1)
-    comment = create(:comment, user_id: user_two.id, post_id: post.id, content: 'Nice post!')
+    comment = create(:comment, user_id: user_two.id, post_id: post.id, content: 'Nice post!', id: 1)
     comment_two = create(:comment, id: 2,
                                    post_id: post.id,
                                    content: 'You guys are too kind xo', user_id: user.id)
@@ -30,5 +30,5 @@ feature 'Deleting comments' do
     expect(page).to have_content("That doesn't belong to you!")
     expect(page).to have_content('You guys are too kind xo')
   end
-  
+
 end
