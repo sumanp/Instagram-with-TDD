@@ -15,7 +15,7 @@ feature 'editing user profiles' do
   end
 
   scenario 'a user can change their own profile details' do
-    click_link 'Arnie'
+    click_link 'Arnie', match: :first
     click_link 'Edit Profile'
     attach_file('user_avatar', 'spec/files/images/avatar.png')
     fill_in 'user_bio', with: 'Is this real life?'
@@ -27,7 +27,7 @@ feature 'editing user profiles' do
   end
 
   scenario "a user cannot see an Edit Profile button on another users profile" do
-    click_link 'bigrigoz'
+    click_link 'bigrigoz', match: :first
 
     expect(page).to_not have_content('Edit Profile')
   end

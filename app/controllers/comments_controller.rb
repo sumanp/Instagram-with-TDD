@@ -8,14 +8,16 @@ class CommentsController < ApplicationController
       format.html { render layout: !request.xhr? }
     end
   end
-  
+
   def create
     @comment = @post.comments.build(comment_params)
     @comment.user_id = current_user.id
 
     if @comment.save
-      flash[:success] = "You commented the hell out of that post!"
-      redirect_to :back
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     else
       flash[:alert] = "Check the comment form, something went horribly wrong."
       render root_path
@@ -27,8 +29,10 @@ class CommentsController < ApplicationController
 
     if @comment.user_id == current_user.id
       @comment.delete
-      flash[:notice] = 'Comment deleted.'
-      redirect_to root_path
+      respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js
+      end
     else
       flash[:warning] = "That doesn't belong to you!"
       redirect_to root_path

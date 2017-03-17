@@ -6,7 +6,7 @@ feature 'viewing user profiles' do
     post = create(:post, user_id: user_two.id, caption: "not mine")
     sign_in_with user
     visit '/'
-    click_link user.user_name
+    click_link user.user_name, match: :first
   end
 
   scenario 'visiting a profile page shows the user name in the url' do

@@ -6,7 +6,7 @@ feature 'Creating Comments' do
     post = create(:post, user_id: user.id, id: 1)
     sign_in_with user
     visit '/'
-    fill_in 'comment_content', with: ';P'
+    fill_in 'comment_content_1', with: ';P'
     click_button 'Submit'
     expect(page).to have_content(';P')
   end
