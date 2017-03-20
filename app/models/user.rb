@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-
+  acts_as_voter
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -10,8 +10,7 @@ class User < ActiveRecord::Base
 
   validates :user_name, presence: true, length: { minimum: 4, maximum: 12 }
 
-  acts_as_voter
-
+  has_many :notifications, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :owned_post, only: [:edit, :update, :destroy, :like, :unlike]
-
+  before_action :owned_post, only: [:edit, :update, :destroy]
+  before_action :set_post, only: [:like, :unlike, :show]
 
   def index
     @posts = Post.all.order('created_at DESC').page params[:page]
@@ -20,7 +20,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
     @post.update(post_params)
     if @post.save
       flash[:success] = "Post updated hombre"
@@ -70,6 +69,10 @@ class PostsController < ApplicationController
   private
   def post_params
     params.require(:post).permit(:caption, :image)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 
   def owned_post
