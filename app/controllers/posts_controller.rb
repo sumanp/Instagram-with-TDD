@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :owned_post, only: [:edit, :update, :destroy, :like]
+  before_action :owned_post, only: [:edit, :update, :destroy, :like, :unlike]
 
 
   def index
@@ -51,6 +51,15 @@ class PostsController < ApplicationController
 
   def like
     if @post.liked_by current_user
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.js
+      end
+    end
+  end
+
+  def unlike
+    if @post.unliked_by current_user
       respond_to do |format|
         format.html { redirect_to :back }
         format.js
