@@ -5,7 +5,8 @@
   </button>
   <ul class='dropdown-menu'>
     <li class='dropdown-header text-center'>Notifications</li>
-    <%= render current_user.notifications.where(read: false).order('created_at DESC') %>
-    <li class=" dropdown-header text-center'"><%= link_to 'View all', notifications_path %></li>
+    <%= render current_user.notifications.where(read: false).order('created_at DESC').last(5) %>
+    <li class="divider" role="separator"></li>
+    <li class="text-center'"><%= link_to 'View all', notifications_path %></li>
   </ul>
 </div>
