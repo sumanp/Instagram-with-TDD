@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:like, :unlike, :show]
 
   def index
-    @posts = Post.all.order('created_at DESC').page params[:page]
+    @posts = Post.of_followed_users(current_user.following).order('created_at DESC').page params[:page]
   end
 
   def show
@@ -64,6 +64,10 @@ class PostsController < ApplicationController
         format.js
       end
     end
+  end
+
+  def browse
+    @posts = Post.all.order('created_at DESC').page params[:page]
   end
 
   private
